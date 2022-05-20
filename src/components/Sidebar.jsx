@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ClockIcon,
@@ -15,12 +17,17 @@ import { Fragment } from "react";
 import { classNames } from "../utils";
 
 const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
+  { name: "Home", href: "/home", icon: HomeIcon, current: true },
   { name: "History", href: "#", icon: ClockIcon, current: false },
   { name: "Balances", href: "#", icon: ScaleIcon, current: false },
   { name: "Cards", href: "#", icon: CreditCardIcon, current: false },
   { name: "Recipients", href: "#", icon: UserGroupIcon, current: false },
-  { name: "Reports", href: "#", icon: DocumentReportIcon, current: false },
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    icon: DocumentReportIcon,
+    current: false,
+  },
 ];
 const secondaryNavigation = [
   { name: "Settings", href: "#", icon: CogIcon },
@@ -96,9 +103,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 >
                   <div className="px-2 space-y-1">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? "bg-cyan-800 text-white"
@@ -112,15 +119,15 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                   <div className="mt-6 pt-6">
                     <div className="px-2 space-y-1">
                       {secondaryNavigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600"
                         >
                           <item.icon
@@ -128,7 +135,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -159,9 +166,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           >
             <div className="px-2 space-y-1">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className={classNames(
                     item.current
                       ? "bg-cyan-800 text-white"
@@ -175,15 +182,15 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     aria-hidden="true"
                   />
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
             <div className="mt-6 pt-6">
               <div className="px-2 space-y-1">
                 {secondaryNavigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600"
                   >
                     <item.icon
@@ -191,7 +198,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       aria-hidden="true"
                     />
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

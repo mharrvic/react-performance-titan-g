@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import ActivityList from "./components/home/ActivityList";
 import OverviewDashboard from "./components/home/OverviewDashboard";
@@ -14,11 +15,7 @@ export default function App() {
       <div className="lg:pl-64 flex flex-col flex-1">
         <Header setSidebarOpen={setSidebarOpen} />
         <main className="flex-1 pb-8">
-          <PageHeader />
-          <div className="mt-8">
-            <OverviewDashboard />
-            <ActivityList />
-          </div>
+          <Outlet />
         </main>
       </div>
     </div>
