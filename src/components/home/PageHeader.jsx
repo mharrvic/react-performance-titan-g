@@ -1,6 +1,11 @@
+import React from "react";
 import { CheckCircleIcon, OfficeBuildingIcon } from "@heroicons/react/solid";
+import ContactList from "./ContactList";
+
+const useForceRerender = () => React.useReducer((x) => x + 1, 0)[1];
 
 export default function PageHeader() {
+  const forceRerender = useForceRerender();
   return (
     <div className="bg-white shadow">
       <div className="px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
@@ -48,16 +53,18 @@ export default function PageHeader() {
           <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
             <button
               type="button"
+              onClick={forceRerender}
               className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
             >
-              Add money
+              Send money to
             </button>
-            <button
+            {/* <button
               type="button"
               className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
             >
               Send money
-            </button>
+            </button> */}
+            <ContactList />
           </div>
         </div>
       </div>
