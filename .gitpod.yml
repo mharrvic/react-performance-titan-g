@@ -32,8 +32,8 @@
 
 tasks:
   - name: App
-    init: npm install
-    command: npm run start
+    init: yarn install
+    command: yarn start
     openMode: split-left
 
  
