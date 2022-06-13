@@ -48,6 +48,11 @@ ports:
    visibility: private # either 'public' or 'private' (default)
    onOpen: open-browser # either 'open-browser', 'open-preview' or 'ignore'
 
+vscode:
+  extensions:
+    - ritwickdey.LiveServer
+    - esbenp.prettier-vscode
+
 ## The 'vscode' section defines a list of Visual Studio Code extensions from
 ## the OpenVSX.org registry to be installed upon workspace startup. OpenVSX
 ## is an open alternative to the proprietary Visual Studio Code Marketplace
