@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Menu, Transition } from "@headlessui/react";
 import {
   BellIcon,
@@ -16,7 +18,42 @@ import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
 import { Fragment } from "react";
 import { classNames } from "../utils";
 
+function BellButton({ count, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none inline-block relative"
+    >
+      <span className="sr-only">View notifications</span>
+      <BellIcon className="h-6 w-6" aria-hidden="true" />
+      <span className="absolute top-0 right-0 block h-4 w-4 transform -translate-y-1/2 translate-x-1/2 rounded-full ring-2 ring-white">
+        {count}
+      </span>
+    </button>
+  );
+}
+
+// Memoize this component using React.memo() to avoid uneccessary re-renders
+function SearchInput({ search, onChange }) {
+  return (
+    <input
+      id="search-field"
+      name="search-field"
+      className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+      placeholder="Search transactions"
+      type="search"
+      value={search}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  );
+}
+
 export default function Header({ setSidebarOpen }) {
+  const [search, setSearch] = React.useState("");
+  const [count, setCount] = React.useState(0);
+  const increment = () => setCount((c) => c + 1);
+
   return (
     <div className="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
       <button
@@ -41,25 +78,13 @@ export default function Header({ setSidebarOpen }) {
               >
                 <SearchIcon className="h-5 w-5" aria-hidden="true" />
               </div>
-              <input
-                id="search-field"
-                name="search-field"
-                className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
-                placeholder="Search transactions"
-                type="search"
-              />
+
+              <SearchInput search={search} onChange={setSearch} />
             </div>
           </form>
         </div>
         <div className="ml-4 flex items-center md:ml-6">
-          <button
-            type="button"
-            className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-          >
-            <span className="sr-only">View notifications</span>
-            <BellIcon className="h-6 w-6" aria-hidden="true" />
-          </button>
-
+          <BellButton count={count} onClick={increment} />
           {/* Profile dropdown */}
           <Menu as="div" className="ml-3 relative">
             <div>
