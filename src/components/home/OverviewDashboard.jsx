@@ -1,4 +1,5 @@
 import React from "react";
+import classnames from "classnames";
 
 import { ScaleIcon } from "@heroicons/react/outline";
 
@@ -10,12 +11,22 @@ const card = {
 };
 
 const Card = React.memo(({ addBalance, setBalance, balance }) => {
+  const [isClicked, setClicked] = React.useState(true);
+  // Apply useMemo here to make the onClick snappy
+  const computedBalance = addBalance(balance);
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg">
       <div className="p-5">
         <div className="flex items-center">
           <div className="flex-shrink-0">
-            <ScaleIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+            <ScaleIcon
+              className={classnames("h-6 w-6 cursor-pointer", {
+                "text-gray-600": isClicked,
+                "text-red-600": !isClicked,
+              })}
+              onClick={() => setClicked(!isClicked)}
+              aria-hidden="true"
+            />
           </div>
           <div className="ml-5 w-0 flex-1">
             <dl>
