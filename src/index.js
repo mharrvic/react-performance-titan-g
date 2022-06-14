@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import Home from "./page/Home";
 import Dashboard from "./page/Dashboard";
+import Directory from "./page/Directory";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -17,6 +18,7 @@ root.render(
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="directory" element={<Directory />} />
         </Route>
       </Routes>
     </BrowserRouter>
