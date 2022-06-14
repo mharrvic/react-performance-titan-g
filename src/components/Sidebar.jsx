@@ -18,7 +18,7 @@ import { classNames } from "../utils";
 
 const navigation = [
   { name: "Home", href: "/home", icon: HomeIcon, current: true },
-  { name: "History", href: "#", icon: ClockIcon, current: false },
+  { name: "Directory", href: "/directory", icon: ClockIcon, current: false },
   { name: "Balances", href: "#", icon: ScaleIcon, current: false },
   { name: "Cards", href: "#", icon: CreditCardIcon, current: false },
   { name: "Recipients", href: "#", icon: UserGroupIcon, current: false },
