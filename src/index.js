@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./index.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import Home from "./page/Home";
+import "./index.css";
 import Dashboard from "./page/Dashboard";
 import Directory from "./page/Directory";
-
+import Home from "./page/Home";
+import Recipients from "./page/Recipients";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -19,6 +19,7 @@ root.render(
           <Route path="home" element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="directory" element={<Directory />} />
+          <Route path="recipients" element={<Recipients />} />
         </Route>
       </Routes>
     </BrowserRouter>

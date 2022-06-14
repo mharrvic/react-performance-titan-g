@@ -20,7 +20,12 @@ const navigation = [
   { name: "Directory", href: "/directory", icon: ClockIcon, current: false },
   { name: "Balances", href: "#", icon: ScaleIcon, current: false },
   { name: "Cards", href: "#", icon: CreditCardIcon, current: false },
-  { name: "Recipients", href: "#", icon: UserGroupIcon, current: false },
+  {
+    name: "Recipients",
+    href: "/recipients",
+    icon: UserGroupIcon,
+    current: false,
+  },
   {
     name: "Dashboard",
     href: "/dashboard",
