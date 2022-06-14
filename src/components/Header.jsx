@@ -1,21 +1,7 @@
-import React from "react";
-
 import { Menu, Transition } from "@headlessui/react";
-import {
-  BellIcon,
-  ClockIcon,
-  CogIcon,
-  CreditCardIcon,
-  DocumentReportIcon,
-  HomeIcon,
-  MenuAlt1Icon,
-  QuestionMarkCircleIcon,
-  ScaleIcon,
-  ShieldCheckIcon,
-  UserGroupIcon,
-} from "@heroicons/react/outline";
+import { BellIcon, MenuAlt1Icon } from "@heroicons/react/outline";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/react/solid";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { classNames } from "../utils";
 
 function BellButton({ count, onClick }) {

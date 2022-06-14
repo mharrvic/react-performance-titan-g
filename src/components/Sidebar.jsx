@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ClockIcon,
@@ -14,6 +12,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { Fragment } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { classNames } from "../utils";
 
 const navigation = [
@@ -36,6 +35,7 @@ const secondaryNavigation = [
 ];
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const location = useLocation();
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -102,25 +102,28 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   aria-label="Sidebar"
                 >
                   <div className="px-2 space-y-1">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-cyan-800 text-white"
-                            : "text-cyan-100 hover:text-white hover:bg-cyan-600",
-                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        <item.icon
-                          className="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </Link>
-                    ))}
+                    {navigation.map((item) => {
+                      const isCurrentPage = item.href === location.pathname;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.href}
+                          className={classNames(
+                            isCurrentPage
+                              ? "bg-cyan-800 text-white"
+                              : "text-cyan-100 hover:text-white hover:bg-cyan-600",
+                            "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                          )}
+                          aria-current={isCurrentPage ? "page" : undefined}
+                        >
+                          <item.icon
+                            className="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200"
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </Link>
+                      );
+                    })}
                   </div>
                   <div className="mt-6 pt-6">
                     <div className="px-2 space-y-1">
@@ -165,25 +168,29 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
             aria-label="Sidebar"
           >
             <div className="px-2 space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-cyan-800 text-white"
-                      : "text-cyan-100 hover:text-white hover:bg-cyan-600",
-                    "group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  <item.icon
-                    className="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200"
-                    aria-hidden="true"
-                  />
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isCurrentPage = item.href === location.pathname;
+
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={classNames(
+                      isCurrentPage
+                        ? "bg-cyan-800 text-white"
+                        : "text-cyan-100 hover:text-white hover:bg-cyan-600",
+                      "group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md"
+                    )}
+                    aria-current={isCurrentPage ? "page" : undefined}
+                  >
+                    <item.icon
+                      className="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200"
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </Link>
+                );
+              })}
             </div>
             <div className="mt-6 pt-6">
               <div className="px-2 space-y-1">
