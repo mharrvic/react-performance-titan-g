@@ -7,6 +7,7 @@ import Dashboard from "./page/Dashboard";
 import Directory from "./page/Directory";
 import Home from "./page/Home";
 import Recipients from "./page/Recipients";
+// import Recipients from "./page/VirtualizedRecipients";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
