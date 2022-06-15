@@ -15,7 +15,7 @@ import TreemapChart from "../components/dashboard/TreemapChart";
 export default function Dashboard() {
   const [enabled, setEnabled] = React.useState(false);
   return (
-    <div style={{ textAlign: "-webkit-center" }}>
+    <div style={{ textAlign: "-webkit-center", padding: "20px" }}>
       <div>
         <ReRadarChart />
       </div>
