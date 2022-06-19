@@ -5,8 +5,8 @@ import {
   CreditCardIcon,
   DocumentReportIcon,
   HomeIcon,
+  PhotographIcon,
   QuestionMarkCircleIcon,
-  ScaleIcon,
   ShieldCheckIcon,
   UserGroupIcon,
   XIcon,
@@ -18,7 +18,7 @@ import { classNames } from "../utils";
 const navigation = [
   { name: "Home", href: "/home", icon: HomeIcon, current: true },
   { name: "Directory", href: "/directory", icon: ClockIcon, current: false },
-  { name: "Balances", href: "#", icon: ScaleIcon, current: false },
+  { name: "Gallery", href: "/gallery", icon: PhotographIcon, current: false },
   { name: "Cards", href: "#", icon: CreditCardIcon, current: false },
   {
     name: "Recipients",
