@@ -1,3 +1,4 @@
+import { BadgeCheckIcon, SearchIcon } from "@heroicons/react/outline";
 import classNames from "classnames";
 import produce from "immer";
 import React from "react";
@@ -12,6 +13,9 @@ const GalleryDispatchContext = React.createContext();
 
 function galleryReducer(state, action) {
   switch (action.type) {
+    case "TYPED_IN_SEARCH_INPUT": {
+      return { ...state, search: action.search };
+    }
     case "UPDATE_GALLERY_ITEM_COLOR": {
       const color =
         "#" +
@@ -37,6 +41,7 @@ function galleryReducer(state, action) {
 
 function GalleryProvider({ children }) {
   const [state, dispatch] = React.useReducer(galleryReducer, {
+    search: "",
     items: files,
   });
 
@@ -63,6 +68,53 @@ function useGalleryDispatch() {
     throw new Error("useGalleryDispatch must be used within the AppProvider");
   }
   return context;
+}
+
+function SearchFilter() {
+  const state = useGalleryState();
+  const dispatch = useGalleryDispatch();
+
+  const { search } = state;
+
+  function handleChange(event) {
+    const searchInput = event.target.value;
+    dispatch({ type: "TYPED_IN_SEARCH_INPUT", search: searchInput });
+  }
+
+  const hotdogDetector =
+    search === "hotdog" ? "HOTDOG" : !search.length ? "" : "NOT HOTDOG";
+
+  return (
+    <form onSubmit={(e) => e.preventDefault()}>
+      <div className="mt-1 pt-3 flex rounded-md shadow-sm">
+        <div className="relative flex items-stretch flex-grow focus-within:z-10">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            value={search}
+            onChange={handleChange}
+            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
+          />
+        </div>
+
+        <button
+          type="button"
+          className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+        >
+          {search === "hotdog" ? (
+            <BadgeCheckIcon
+              className="h-5 w-5 text-green-600"
+              aria-hidden="true"
+            />
+          ) : (
+            <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          )}
+          <span>{hotdogDetector}</span>
+        </button>
+      </div>
+    </form>
+  );
 }
 
 function ImageCard({ file }) {
@@ -142,6 +194,7 @@ export default function Gallery() {
               <div className="pt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <GalleryProvider>
                   <Tabs forceRerender={forceRerender} />
+                  <SearchFilter />
 
                   <GallerySection files={files} />
                 </GalleryProvider>
