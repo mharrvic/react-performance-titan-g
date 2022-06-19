@@ -8,6 +8,8 @@ import Directory from "./page/Directory";
 import Home from "./page/Home";
 import Recipients from "./page/Recipients";
 // import Recipients from "./page/VirtualizedRecipients";
+import Gallery from "./page/Gallery";
+
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -21,6 +23,7 @@ root.render(
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="directory" element={<Directory />} />
           <Route path="recipients" element={<Recipients />} />
+          <Route path="gallery" element={<Gallery />} />
         </Route>
       </Routes>
     </BrowserRouter>
