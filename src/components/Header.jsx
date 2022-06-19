@@ -14,7 +14,7 @@ function BellButton({ count, onClick }) {
       <span className="sr-only">View notifications</span>
       <BellIcon className="h-6 w-6" aria-hidden="true" />
       <span className="absolute top-0 right-0 block h-4 w-4 transform -translate-y-1/2 translate-x-1/2 rounded-full ring-2 ring-white">
-        {count}
+        {count > 0 ? count : null}
       </span>
     </button>
   );
