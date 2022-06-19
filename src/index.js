@@ -8,7 +8,8 @@ import Directory from "./page/Directory";
 import Home from "./page/Home";
 import Recipients from "./page/Recipients";
 // import Recipients from "./page/VirtualizedRecipients";
-import Gallery from "./page/Gallery";
+// import Gallery from "./page/Gallery";
+import Gallery from "./page/SeparatedGalleryContext";
 
 import reportWebVitals from "./reportWebVitals";
 
