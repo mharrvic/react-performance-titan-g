@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import React, { Fragment, useState } from "react";
 
 import data from "../../data/generated.json";
 
@@ -19,7 +19,7 @@ export default function ContactList() {
   const forceRerender = useForceRerender();
   const [selected, setSelected] = useState([]);
   const [query, setQuery] = useState("");
-
+  console.time("filter peeps");
   /* Uncomment this */
   // const filteredPeople = React.useMemo(() => filterPeople(data, query), [
   //   query,
@@ -28,6 +28,7 @@ export default function ContactList() {
   /* Comment this out */
   const filteredPeople = filterPeople(data, query);
 
+  console.timeEnd("filter peeps");
   return (
     <>
       <button
